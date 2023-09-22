@@ -1,4 +1,5 @@
 name: Deploy Infrastructure
+
 on:
   workflow_call:
     inputs:
@@ -12,33 +13,40 @@ on:
       CI_ROLE:
         required: true
       SSH_KEY_GITHUB_ACTIONS:
-        required: false
+        required: true
 
 jobs:
   Infra-deploy:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{ inputs.work-dir }}
+        working-directory: "${{ inputs.work-dir }}"
     steps:
       - name: AWS_Creds
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: ${{ secrets.CI_ROLE }}
-          aws-region: ${{ inputs.aws-region }}
+          role-to-assume: "${{ secrets.CI_ROLE }}"
+          aws-region: "${{ inputs.aws-region }}"
 
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
-      - name: Terraform_format
+
+      - name: Terraform Format Check
         run: terraform fmt -check
-      - name: init
+
+      - name: Terraform Initialization
         run: |
           eval "$(ssh-agent -s)"
-          ssh-add - <<< '${{ secrets.SSH_KEY_GITHUB_ACTIONS}}'
+          ssh-add - <<< "${{ secrets.SSH_KEY_GITHUB_ACTIONS }}"
           terraform init
-      - name: Validate
+
+      - name: Terraform Validation
         run: terraform validate
-      - name: Planning
+
+      - name: Terraform Planning
         run: terraform plan
-     # - name: Apply
-       # run: terraform apply -auto-approve
+
+      # - name: Terraform Apply
+      #   run: terraform apply -auto-approve
+
+      # Uncomment the above block when ready to apply
