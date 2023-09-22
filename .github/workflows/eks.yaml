@@ -1,0 +1,19 @@
+name: EKS Deploy
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  pull-requests: write
+  statuses: write
+  actions: read
+  contents: read
+
+jobs:
+  call-eks-workflow:
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      work-dir: "environments/eks"
+      aws-region: "us-west-2"
+    secrets:
+      CI_ROLE: ${{ secrets.CI_ROLE }}
