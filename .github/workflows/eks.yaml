@@ -14,7 +14,7 @@ jobs:
   call-eks-workflow:
     uses: ./.github/workflows/deploy.yaml
     with:
-      work-dir: "environments/eks"
+      work-dir: "eks"
       aws-region: "us-west-2"
     secrets:
       CI_ROLE: ${{ secrets.CI_ROLE }}
