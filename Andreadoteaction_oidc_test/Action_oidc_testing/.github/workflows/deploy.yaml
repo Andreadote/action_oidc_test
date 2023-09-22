@@ -12,7 +12,7 @@ on:
       CI_ROLE:
         required: true
       SSH_KEY_GITHUB_ACTIONS:
-        required: true
+        required: false
 
 jobs:
   Infra-deploy:
