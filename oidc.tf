@@ -1,5 +1,5 @@
 # OIDC for git actions24
-data "tls_certificate" "eks248" {
+data "tls_certificate" "eks24" {
   url = "https://token.actions.githubusercontent.com"
 }
 
