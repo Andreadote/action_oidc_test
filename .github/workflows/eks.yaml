@@ -18,3 +18,4 @@ jobs:
       aws-region: "us-west-2"
     secrets:
       CI_ROLE: ${{ secrets.CI_ROLE }}
+      SSH_KEY_GITHUB_ACTIONS: ${{ secrets.SSH_KEY_GITHUB_ACTIONS }}
