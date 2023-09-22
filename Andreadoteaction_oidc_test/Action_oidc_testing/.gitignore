@@ -1,0 +1,6 @@
+.terraform/
+oidc/
+terra-*
+environments/eks/*
+.terraform.*
+terraform.*
