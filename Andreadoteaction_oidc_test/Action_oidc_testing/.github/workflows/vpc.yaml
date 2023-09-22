@@ -1,4 +1,4 @@
-name: VPC_Deploy
+name: VPC
 on:
   workflow_dispatch:
 
