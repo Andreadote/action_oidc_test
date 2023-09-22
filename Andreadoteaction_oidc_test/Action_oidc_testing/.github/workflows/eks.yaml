@@ -1,6 +1,10 @@
 name: EKS Deploy
+
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Add this to allow manual triggering
+  push:
+    branches:
+      - main
 
 permissions:
   id-token: write
