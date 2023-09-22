@@ -38,7 +38,7 @@ jobs:
           terraform init
       - name: Validate
         run: terraform validate
-      - name: Plan
+      - name: Planning
         run: terraform plan
      # - name: Apply
        # run: terraform apply -auto-approve
